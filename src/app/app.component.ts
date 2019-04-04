@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'easyReturn App';
+  user = "Alexa";
+  company = "Alexa Inc";
 }
