@@ -1,0 +1,38 @@
+<main class="Polaris-Frame__Main" id="AppFrameMain" data-has-global-ribbon="false">
+  <div class="Polaris-Frame__Content">
+    <div class="Polaris-Page">
+      <div class="Polaris-Page__Content">
+        <div class="Polaris-Layout">
+          <div class="Polaris-Layout__Section">
+            <div class="Polaris-Card">
+              <div class="Polaris-Card__Section">
+                <div class="Polaris-SettingAction">
+                  <div class="Polaris-SettingAction__Setting">
+                      <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+                            <div class="Polaris-TextField Polaris-TextField--hasValue">
+                              <input id="TextField1" placeholder="Email address or phone number" [(ngModel)]="emailOrphone" class="Polaris-TextField__Input" aria-label="Store name" aria-labelledby="TextField1Label" aria-invalid="false" value="">
+                              <div class="Polaris-TextField__Backdrop"></div>
+                            </div>
+                        </div>
+                  </div>
+                  <div class="Polaris-SettingAction__Setting">
+                      <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+                            <div class="Polaris-TextField Polaris-TextField--hasValue"><input id="TextField1" [(ngModel)]="orderNo" placeholder="Order #" class="Polaris-TextField__Input" aria-label="Store name" aria-labelledby="TextField1Label" aria-invalid="false" value="">
+                              <div class="Polaris-TextField__Backdrop"></div>
+                            </div>
+                        </div>
+                  </div>
+                  <div class="Polaris-SettingAction__Action">
+                    <button type="button" class="Polaris-Button Polaris-Button--primary" (click)="searchOrder()"><span class="Polaris-Button__Content">
+                      <span class="Polaris-Button__Text">Search</span></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
