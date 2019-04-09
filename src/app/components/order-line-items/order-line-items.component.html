@@ -6,48 +6,6 @@
             <div class="Polaris-Card">
               <div class="Polaris-Card__Section">
                 <!-- Line Items  -->
-                <!-- <div
-                  style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
-                  <div class="Polaris-Layout">
-                    <div class="Polaris-Layout__Section Polaris-Layout__Section--oneHalf">
-                      <div class="Polaris-Card">
-                        <div class="Polaris-Card__Header">
-                        </div>
-                        <div class="Polaris-Card__Section">
-                          <div class="Polaris-ResourceList__ResourceListWrapper">
-                            <ul class="Polaris-ResourceList" aria-live="polite">
-                              <li class="Polaris-ResourceList__ItemWrapper" *ngFor="let line of orders">
-                                <div class="Polaris-ResourceList-Item">
-                                  <div class="Polaris-ResourceList-Item__Container">
-                                    <div class="Polaris-ResourceList-Item__Owned">
-                                      <div class="Polaris-ResourceList-Item__Media"><span
-                                          class="Polaris-Thumbnail Polaris-Thumbnail--sizeMedium"><img
-                                            src="{{line.image}}" alt="{{line.description}}"
-                                            class="Polaris-Thumbnail__Image"></span></div>
-                                    </div>
-                                    <div class="Polaris-ResourceList-Item__Content">
-                                      <h3><span class="Polaris-TextStyle--variationStrong">{{line.description}}</span>
-                                      </h3>
-                                      <div>Quantity: <b>{{line.qty}}</b></div>
-                                      <div class="Polaris-ResourceList-Item__Actions">
-                                          <select id="Select1" class="Polaris-Select__Input">
-                                            <option value="today">Today</option>
-                                            <option value="yesterday">Yesterday</option>
-                                            <option value="lastWeek">Last 7 days</option>
-                                          </select>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
-
                 <div
                   style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
                   <div class="Polaris-Card" *ngFor="let line of orders">
@@ -57,30 +15,102 @@
                           <h2 class="Polaris-Heading">{{line.title}}</h2>
                           <div class="Polaris-ResourceList-Item__Media"><span
                               class="Polaris-Thumbnail Polaris-Thumbnail--sizeMedium"><img src="{{line.image}}"
-                                alt="{{line.description}}" class="Polaris-Thumbnail__Image"></span></div>
+                                alt="{{line.description}}" class="Polaris-Thumbnail__Image"></span>
+                              </div>
+                              {{line.description}}
                         </div>
                         <div class="Polaris-Stack__Item">
-                          <div class="Polaris-ButtonGroup">
-                            <div class="Polaris-ButtonGroup__Item Polaris-ButtonGroup__Item--plain">
-                              <div
-                                style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
-                                <div class="Polaris-Labelled__LabelWrapper">
-                                  <div class="Polaris-Label"><label id="Select6Label" for="Select6"
-                                      class="Polaris-Label__Text">Reason for return</label></div>
+                          <div
+                            style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+                            <div class="Polaris-FormLayout">
+                              <div role="group" class="Polaris-FormLayout--grouped">
+                                <div class="Polaris-FormLayout__Items">
+                                  <div class="Polaris-FormLayout__Item">
+                                    <div class="">
+                                      <div class="Polaris-Labelled__LabelWrapper">
+                                        <div class="Polaris-Label"><label id="TextField5Label" for="TextField5"
+                                            class="Polaris-Label__Text">Reason for return</label></div>
+                                      </div>
+                                      <div
+                                        style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+                                        <div class="Polaris-Select">
+                                          <select id="Select6" class="Polaris-Select__Input"
+                                            [(ngModel)]="line.reasonforreturn" aria-invalid="false">
+                                            <option value="{{item}}" *ngFor="let item of reasons">{{item}}</option>
+                                          </select>
+                                          <div class="Polaris-Select__Content" aria-hidden="true"><span
+                                              class="Polaris-Select__SelectedOption">{{line.reasonforreturn}}</span><span
+                                              class="Polaris-Select__Icon"><span class="Polaris-Icon"><svg
+                                                  viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false"
+                                                  aria-hidden="true">
+                                                  <path d="M13 8l-3-3-3 3h6zm-.1 4L10 14.9 7.1 12h5.8z"
+                                                    fill-rule="evenodd">
+                                                  </path>
+                                                </svg></span></span></div>
+                                          <div class="Polaris-Select__Backdrop"></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="Polaris-FormLayout__Item">
+                                    <div class="">
+                                      <div class="Polaris-Labelled__LabelWrapper">
+                                        <div class="Polaris-Label"><label id="TextField6Label" for="TextField6"
+                                            class="Polaris-Label__Text">Return quantity</label></div>
+                                      </div>
+                                      <div class="Polaris-Select">
+                                        <select id="Select6" class="Polaris-Select__Input"
+                                          [(ngModel)]="line.returnquantity" aria-invalid="false">
+                                          <option value="{{x}}"
+                                            *ngFor="let item of [].constructor(line.quantity + 1);let x=index">{{x}}
+                                          </option>
+                                        </select>
+                                        <div class="Polaris-Select__Content" aria-hidden="true"><span
+                                            class="Polaris-Select__SelectedOption">{{line.returnquantity}}</span><span
+                                            class="Polaris-Select__Icon"><span class="Polaris-Icon"><svg
+                                                viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false"
+                                                aria-hidden="true">
+                                                <path d="M13 8l-3-3-3 3h6zm-.1 4L10 14.9 7.1 12h5.8z"
+                                                  fill-rule="evenodd">
+                                                </path>
+                                              </svg></span></span></div>
+                                        <div class="Polaris-Select__Backdrop"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+
                                 </div>
-                                <div class="Polaris-Select">
-                                  <select id="Select6" class="Polaris-Select__Input" [(ngModel)]="line.reasonforreturn"
-                                    aria-invalid="false">
-                                    <option value="{{item}}" *ngFor="let item of reasons">{{item}}</option>
-                                  </select>
-                                  <div class="Polaris-Select__Content" aria-hidden="true"><span
-                                      class="Polaris-Select__SelectedOption">{{line.reasonforreturn}}</span><span
-                                      class="Polaris-Select__Icon"><span class="Polaris-Icon"><svg viewBox="0 0 20 20"
-                                          class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
-                                          <path d="M13 8l-3-3-3 3h6zm-.1 4L10 14.9 7.1 12h5.8z" fill-rule="evenodd">
-                                          </path>
-                                        </svg></span></span></div>
-                                  <div class="Polaris-Select__Backdrop"></div>
+                              </div>
+                              <div class="Polaris-FormLayout--grouped" *ngIf="line.reasonforreturn === 'Other (please specify in the notes section)'">
+                                <div class="Polaris-FormLayout__Items">
+                                  <div class="Polaris-FormLayout__Item">
+                                    <!--Notes/Text area to enter-->
+                                    <div
+                                      style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+                                      <div class="">
+                                        <div class="Polaris-Labelled__LabelWrapper">
+                                          <div class="Polaris-Label"><label id="TextField35Label" for="TextField35"
+                                              class="Polaris-Label__Text">Notes</label></div>
+                                        </div>
+                                        <div
+                                          class="Polaris-TextField Polaris-TextField--hasValue Polaris-TextField--multiline">
+                                          <textarea id="TextField35" class="Polaris-TextField__Input"
+                                            aria-label="Shipping address" aria-labelledby="TextField35Label"
+                                            [(ngModel)]="line.notes" aria-invalid="false" aria-multiline="true"
+                                            style="height: 60px;">1776 Barnes Street
+                                              Orlando, FL 32801</textarea>
+                                          <div class="Polaris-TextField__Backdrop"></div>
+                                          <div aria-hidden="true" class="Polaris-TextField__Resizer">
+                                            <div class="Polaris-TextField__DummyInput">1776 Barnes
+                                              Street<br>Orlandoundefined
+                                              FL 32801<br></div>
+                                            <div class="Polaris-TextField__DummyInput"><br></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <!--End of notes-->
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -89,12 +119,13 @@
                       </div>
                     </div>
                     <div class="Polaris-Card__Section">
-                      {{line.description}}
+                      <!--section-->
                     </div>
                   </div>
                 </div>
                 <!-- End of line items -->
               </div>
+              {{ orders | json }}
             </div>
           </div>
         </div>
