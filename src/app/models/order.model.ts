@@ -3,4 +3,6 @@ export interface IOrderModel{
     description:string;
     image:any;
     qty:number;
+    reasonforreturn:string;
+    returnquantity:number;
 }

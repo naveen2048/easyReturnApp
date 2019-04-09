@@ -12,8 +12,8 @@ export class OrderSearchComponent implements OnInit {
   orderNo:any;
 
   orders:IOrderModel[] = [
-    { title: "T-Shirt", description: "This is fancy", image: "", qty: 2 },
-    { title: "Salwar", description: "Indian Traditional dress", image: "", qty: 1 }
+    { title: "T-Shirt", description: "This is fancy", image: "https://burst.shopifycdn.com/photos/black-orange-stripes_373x@2x.jpg", qty: 2, reasonforreturn: "", returnquantity:0 },
+    { title: "Salwar", description: "Indian Traditional dress", image: "https://burst.shopifycdn.com/photos/tucan-scarf_373x@2x.jpg", qty: 1,reasonforreturn: "", returnquantity:0 }
   ];
 
   constructor() { }

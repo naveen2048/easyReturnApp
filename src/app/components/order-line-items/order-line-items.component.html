@@ -6,7 +6,7 @@
             <div class="Polaris-Card">
               <div class="Polaris-Card__Section">
                 <!-- Line Items  -->
-                <div
+                <!-- <div
                   style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
                   <div class="Polaris-Layout">
                     <div class="Polaris-Layout__Section Polaris-Layout__Section--oneHalf">
@@ -16,23 +16,26 @@
                         <div class="Polaris-Card__Section">
                           <div class="Polaris-ResourceList__ResourceListWrapper">
                             <ul class="Polaris-ResourceList" aria-live="polite">
-                              <li class="Polaris-ResourceList__ItemWrapper">
-                                <div class="Polaris-ResourceList-Item" data-href="produdcts/341"><a
-                                    aria-describedby="341" aria-label="View details for Black &amp; orange scarf"
-                                    class="Polaris-ResourceList-Item__Link" tabindex="0" href="produdcts/341"
-                                    data-polaris-unstyled="true"></a>
-                                  <div class="Polaris-ResourceList-Item__Container" id="341">
+                              <li class="Polaris-ResourceList__ItemWrapper" *ngFor="let line of orders">
+                                <div class="Polaris-ResourceList-Item">
+                                  <div class="Polaris-ResourceList-Item__Container">
                                     <div class="Polaris-ResourceList-Item__Owned">
                                       <div class="Polaris-ResourceList-Item__Media"><span
                                           class="Polaris-Thumbnail Polaris-Thumbnail--sizeMedium"><img
-                                            src="https://burst.shopifycdn.com/photos/black-orange-stripes_373x@2x.jpg"
-                                            alt="Black orange scarf" class="Polaris-Thumbnail__Image"></span></div>
+                                            src="{{line.image}}" alt="{{line.description}}"
+                                            class="Polaris-Thumbnail__Image"></span></div>
                                     </div>
                                     <div class="Polaris-ResourceList-Item__Content">
-                                      <h3><span class="Polaris-TextStyle--variationStrong">Black &amp; orange
-                                          scarf</span></h3>
-                                      <div>SKU: 9234194023</div>
-                                      <div>254 available</div>
+                                      <h3><span class="Polaris-TextStyle--variationStrong">{{line.description}}</span>
+                                      </h3>
+                                      <div>Quantity: <b>{{line.qty}}</b></div>
+                                      <div class="Polaris-ResourceList-Item__Actions">
+                                          <select id="Select1" class="Polaris-Select__Input">
+                                            <option value="today">Today</option>
+                                            <option value="yesterday">Yesterday</option>
+                                            <option value="lastWeek">Last 7 days</option>
+                                          </select>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
@@ -41,6 +44,52 @@
                           </div>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                </div> -->
+
+                <div
+                  style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+                  <div class="Polaris-Card" *ngFor="let line of orders">
+                    <div class="Polaris-Card__Header">
+                      <div class="Polaris-Stack Polaris-Stack--alignmentBaseline">
+                        <div class="Polaris-Stack__Item Polaris-Stack__Item--fill">
+                          <h2 class="Polaris-Heading">{{line.title}}</h2>
+                          <div class="Polaris-ResourceList-Item__Media"><span
+                              class="Polaris-Thumbnail Polaris-Thumbnail--sizeMedium"><img src="{{line.image}}"
+                                alt="{{line.description}}" class="Polaris-Thumbnail__Image"></span></div>
+                        </div>
+                        <div class="Polaris-Stack__Item">
+                          <div class="Polaris-ButtonGroup">
+                            <div class="Polaris-ButtonGroup__Item Polaris-ButtonGroup__Item--plain">
+                              <div
+                                style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+                                <div class="Polaris-Labelled__LabelWrapper">
+                                  <div class="Polaris-Label"><label id="Select6Label" for="Select6"
+                                      class="Polaris-Label__Text">Reason for return</label></div>
+                                </div>
+                                <div class="Polaris-Select">
+                                  <select id="Select6" class="Polaris-Select__Input" [(ngModel)]="line.reasonforreturn"
+                                    aria-invalid="false">
+                                    <option value="{{item}}" *ngFor="let item of reasons">{{item}}</option>
+                                  </select>
+                                  <div class="Polaris-Select__Content" aria-hidden="true"><span
+                                      class="Polaris-Select__SelectedOption">{{line.reasonforreturn}}</span><span
+                                      class="Polaris-Select__Icon"><span class="Polaris-Icon"><svg viewBox="0 0 20 20"
+                                          class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
+                                          <path d="M13 8l-3-3-3 3h6zm-.1 4L10 14.9 7.1 12h5.8z" fill-rule="evenodd">
+                                          </path>
+                                        </svg></span></span></div>
+                                  <div class="Polaris-Select__Backdrop"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="Polaris-Card__Section">
+                      {{line.description}}
                     </div>
                   </div>
                 </div>
