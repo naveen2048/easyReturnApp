@@ -1,6 +1,6 @@
 import { reasonForReturn } from './../../models/returnReason.model';
 import { Component, OnInit, Input } from '@angular/core';
-import { IOrderModel } from 'src/app/models/order.model';
+import { IOrderModel, IReturnModel } from 'src/app/models/order.model';
 
 @Component({
   selector: 'app-order-line-items',
@@ -9,7 +9,7 @@ import { IOrderModel } from 'src/app/models/order.model';
 })
 export class OrderLineItemsComponent implements OnInit {
 
-  @Input('orders') orders: IOrderModel[];
+  @Input('orders') orders: IReturnModel;
   reasons = reasonForReturn;
   
 
