@@ -9,6 +9,8 @@
                 <div
                   style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
                   <div class="Polaris-Card" *ngFor="let line of orders">
+                    <!-- border color based on selection-->
+                    <div style="padding-bottom: 5px;" [ngClass]="(line.reasonforreturn !== '' && line.returnquantity !== 0) ? 'border-green': 'border-yellow' ">
                     <div class="Polaris-Card__Header">
                       <div class="Polaris-Stack Polaris-Stack--alignmentBaseline">
                         <div class="Polaris-Stack__Item Polaris-Stack__Item--fill">
@@ -78,7 +80,6 @@
                                       </div>
                                     </div>
                                   </div>
-
                                 </div>
                               </div>
                               <div class="Polaris-FormLayout--grouped" *ngIf="line.reasonforreturn === 'Other (please specify in the notes section)'">
@@ -121,6 +122,8 @@
                     <div class="Polaris-Card__Section">
                       <!--section-->
                     </div>
+                  </div>
+                    <!-- End of border color -->
                   </div>
                 </div>
                 <!-- End of line items -->
