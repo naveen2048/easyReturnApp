@@ -8,40 +8,68 @@
                 <!-- Line Items  -->
                 <div
                   style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
-                  <div class="Polaris-Card" *ngFor="let line of orders">
+                  <div class="Polaris-Card" *ngFor="let line of orders.orderitems">
                     <!-- border color based on selection-->
-                    <div style="padding-bottom: 5px;" [ngClass]="(line.reasonforreturn !== '' && line.returnquantity !== 0) ? 'border-green': 'border-yellow' ">
-                    <div class="Polaris-Card__Header">
-                      <div class="Polaris-Stack Polaris-Stack--alignmentBaseline">
-                        <div class="Polaris-Stack__Item Polaris-Stack__Item--fill">
-                          <h2 class="Polaris-Heading">{{line.title}}</h2>
-                          <div class="Polaris-ResourceList-Item__Media"><span
-                              class="Polaris-Thumbnail Polaris-Thumbnail--sizeMedium"><img src="{{line.image}}"
-                                alt="{{line.description}}" class="Polaris-Thumbnail__Image"></span>
-                              </div>
-                              {{line.description}}
-                        </div>
-                        <div class="Polaris-Stack__Item">
-                          <div
-                            style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
-                            <div class="Polaris-FormLayout">
-                              <div role="group" class="Polaris-FormLayout--grouped">
-                                <div class="Polaris-FormLayout__Items">
-                                  <div class="Polaris-FormLayout__Item">
-                                    <div class="">
-                                      <div class="Polaris-Labelled__LabelWrapper">
-                                        <div class="Polaris-Label"><label id="TextField5Label" for="TextField5"
-                                            class="Polaris-Label__Text">Reason for return</label></div>
+                    <div style="padding-bottom: 5px;"
+                      [ngClass]="(line.reasonforreturn !== '' && line.returnquantity !== 0) ? 'border-green': 'border-yellow' ">
+                      <div class="Polaris-Card__Header">
+                        <div class="Polaris-Stack Polaris-Stack--alignmentBaseline">
+                          <div class="Polaris-Stack__Item Polaris-Stack__Item--fill">
+                            <h2 class="Polaris-Heading">{{line.title}}</h2>
+                            <div class="Polaris-ResourceList-Item__Media"><span
+                                class="Polaris-Thumbnail Polaris-Thumbnail--sizeMedium"><img src="{{line.image}}"
+                                  alt="{{line.description}}" class="Polaris-Thumbnail__Image"></span>
+                            </div>
+                            {{line.description}}
+                          </div>
+                          <div class="Polaris-Stack__Item">
+                            <div
+                              style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+                              <div class="Polaris-FormLayout">
+                                <div role="group" class="Polaris-FormLayout--grouped">
+                                  <div class="Polaris-FormLayout__Items">
+                                    <div class="Polaris-FormLayout__Item">
+                                      <div class="">
+                                        <div class="Polaris-Labelled__LabelWrapper">
+                                          <div class="Polaris-Label"><label id="TextField5Label" for="TextField5"
+                                              class="Polaris-Label__Text">Reason for return</label></div>
+                                        </div>
+                                        <div
+                                          style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+                                          <div class="Polaris-Select">
+                                            <select id="Select6" class="Polaris-Select__Input"
+                                              [(ngModel)]="line.reasonforreturn" aria-invalid="false">
+                                              <option value="{{item}}" *ngFor="let item of reasons">{{item}}</option>
+                                            </select>
+                                            <div class="Polaris-Select__Content" aria-hidden="true"><span
+                                                class="Polaris-Select__SelectedOption">{{line.reasonforreturn}}</span><span
+                                                class="Polaris-Select__Icon"><span class="Polaris-Icon"><svg
+                                                    viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false"
+                                                    aria-hidden="true">
+                                                    <path d="M13 8l-3-3-3 3h6zm-.1 4L10 14.9 7.1 12h5.8z"
+                                                      fill-rule="evenodd">
+                                                    </path>
+                                                  </svg></span></span></div>
+                                            <div class="Polaris-Select__Backdrop"></div>
+                                          </div>
+                                        </div>
                                       </div>
-                                      <div
-                                        style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+                                    </div>
+                                    <div class="Polaris-FormLayout__Item">
+                                      <div class="">
+                                        <div class="Polaris-Labelled__LabelWrapper">
+                                          <div class="Polaris-Label"><label id="TextField6Label" for="TextField6"
+                                              class="Polaris-Label__Text">Return quantity</label></div>
+                                        </div>
                                         <div class="Polaris-Select">
                                           <select id="Select6" class="Polaris-Select__Input"
-                                            [(ngModel)]="line.reasonforreturn" aria-invalid="false">
-                                            <option value="{{item}}" *ngFor="let item of reasons">{{item}}</option>
+                                            [(ngModel)]="line.returnquantity" aria-invalid="false">
+                                            <option value="{{x}}"
+                                              *ngFor="let item of [].constructor(line.quantity + 1);let x=index">{{x}}
+                                            </option>
                                           </select>
                                           <div class="Polaris-Select__Content" aria-hidden="true"><span
-                                              class="Polaris-Select__SelectedOption">{{line.reasonforreturn}}</span><span
+                                              class="Polaris-Select__SelectedOption">{{line.returnquantity}}</span><span
                                               class="Polaris-Select__Icon"><span class="Polaris-Icon"><svg
                                                   viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false"
                                                   aria-hidden="true">
@@ -54,63 +82,38 @@
                                       </div>
                                     </div>
                                   </div>
-                                  <div class="Polaris-FormLayout__Item">
-                                    <div class="">
-                                      <div class="Polaris-Labelled__LabelWrapper">
-                                        <div class="Polaris-Label"><label id="TextField6Label" for="TextField6"
-                                            class="Polaris-Label__Text">Return quantity</label></div>
-                                      </div>
-                                      <div class="Polaris-Select">
-                                        <select id="Select6" class="Polaris-Select__Input"
-                                          [(ngModel)]="line.returnquantity" aria-invalid="false">
-                                          <option value="{{x}}"
-                                            *ngFor="let item of [].constructor(line.quantity + 1);let x=index">{{x}}
-                                          </option>
-                                        </select>
-                                        <div class="Polaris-Select__Content" aria-hidden="true"><span
-                                            class="Polaris-Select__SelectedOption">{{line.returnquantity}}</span><span
-                                            class="Polaris-Select__Icon"><span class="Polaris-Icon"><svg
-                                                viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false"
-                                                aria-hidden="true">
-                                                <path d="M13 8l-3-3-3 3h6zm-.1 4L10 14.9 7.1 12h5.8z"
-                                                  fill-rule="evenodd">
-                                                </path>
-                                              </svg></span></span></div>
-                                        <div class="Polaris-Select__Backdrop"></div>
-                                      </div>
-                                    </div>
-                                  </div>
                                 </div>
-                              </div>
-                              <div class="Polaris-FormLayout--grouped" *ngIf="line.reasonforreturn === 'Other (please specify in the notes section)'">
-                                <div class="Polaris-FormLayout__Items">
-                                  <div class="Polaris-FormLayout__Item">
-                                    <!--Notes/Text area to enter-->
-                                    <div
-                                      style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
-                                      <div class="">
-                                        <div class="Polaris-Labelled__LabelWrapper">
-                                          <div class="Polaris-Label"><label id="TextField35Label" for="TextField35"
-                                              class="Polaris-Label__Text">Notes</label></div>
-                                        </div>
-                                        <div
-                                          class="Polaris-TextField Polaris-TextField--hasValue Polaris-TextField--multiline">
-                                          <textarea id="TextField35" class="Polaris-TextField__Input"
-                                            aria-label="Shipping address" aria-labelledby="TextField35Label"
-                                            [(ngModel)]="line.notes" aria-invalid="false" aria-multiline="true"
-                                            style="height: 60px;">1776 Barnes Street
+                                <div class="Polaris-FormLayout--grouped"
+                                  *ngIf="line.reasonforreturn === 'Other (please specify in the notes section)'">
+                                  <div class="Polaris-FormLayout__Items">
+                                    <div class="Polaris-FormLayout__Item">
+                                      <!--Notes/Text area to enter-->
+                                      <div
+                                        style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+                                        <div class="">
+                                          <div class="Polaris-Labelled__LabelWrapper">
+                                            <div class="Polaris-Label"><label id="TextField35Label" for="TextField35"
+                                                class="Polaris-Label__Text">Notes</label></div>
+                                          </div>
+                                          <div
+                                            class="Polaris-TextField Polaris-TextField--hasValue Polaris-TextField--multiline">
+                                            <textarea id="TextField35" class="Polaris-TextField__Input"
+                                              aria-label="Shipping address" aria-labelledby="TextField35Label"
+                                              [(ngModel)]="line.notes" aria-invalid="false" aria-multiline="true"
+                                              style="height: 60px;">1776 Barnes Street
                                               Orlando, FL 32801</textarea>
-                                          <div class="Polaris-TextField__Backdrop"></div>
-                                          <div aria-hidden="true" class="Polaris-TextField__Resizer">
-                                            <div class="Polaris-TextField__DummyInput">1776 Barnes
-                                              Street<br>Orlandoundefined
-                                              FL 32801<br></div>
-                                            <div class="Polaris-TextField__DummyInput"><br></div>
+                                            <div class="Polaris-TextField__Backdrop"></div>
+                                            <div aria-hidden="true" class="Polaris-TextField__Resizer">
+                                              <div class="Polaris-TextField__DummyInput">1776 Barnes
+                                                Street<br>Orlandoundefined
+                                                FL 32801<br></div>
+                                              <div class="Polaris-TextField__DummyInput"><br></div>
+                                            </div>
                                           </div>
                                         </div>
                                       </div>
+                                      <!--End of notes-->
                                     </div>
-                                    <!--End of notes-->
                                   </div>
                                 </div>
                               </div>
@@ -118,15 +121,110 @@
                           </div>
                         </div>
                       </div>
+                      <div class="Polaris-Card__Section">
+                        <!--section-->
+                      </div>
                     </div>
-                    <div class="Polaris-Card__Section">
-                      <!--section-->
-                    </div>
-                  </div>
                     <!-- End of border color -->
                   </div>
                 </div>
                 <!-- End of line items -->
+              </div>
+            </div>
+          </div>
+          <!-- Other information like Bank Details
+            Chose refund method
+            Final notes, if any
+            Notification email 
+          -->
+          <div class="Polaris-Layout__Section Polaris-Layout__Section--secondary">
+            <div class="Polaris-Card">
+              <div class="Polaris-Card__Header">
+                <h2 class="Polaris-Heading">Refund Method</h2>
+              </div>
+              <div class="Polaris-Card__Section">
+                <!-- Section details go here -->
+                <div
+                  style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+                  <fieldset class="Polaris-ChoiceList" id="ChoiceList15" aria-invalid="false"
+                    aria-describedby="ChoiceList15Error">
+                    <ul class="Polaris-ChoiceList__Choices">
+                      <li><label class="Polaris-Choice" for="RadioButton31"><span class="Polaris-Choice__Control"><span
+                              class="Polaris-RadioButton"><input id="RadioButton31" name="ChoiceList15" type="radio"
+                                class="Polaris-RadioButton__Input" value="refund" checked="" ><span
+                                class="Polaris-RadioButton__Backdrop"></span><span
+                                class="Polaris-RadioButton__Icon"></span></span></span><span
+                            class="Polaris-Choice__Label">Refund</span></label></li>
+                      <li><label class="Polaris-Choice" for="RadioButton32"><span class="Polaris-Choice__Control"><span
+                              class="Polaris-RadioButton"><input id="RadioButton32" name="ChoiceList15" type="radio"
+                                class="Polaris-RadioButton__Input" value="exchange"><span
+                                class="Polaris-RadioButton__Backdrop"></span><span
+                                class="Polaris-RadioButton__Icon"></span></span></span><span
+                            class="Polaris-Choice__Label">Exchange</span></label></li>
+                      <li><label class="Polaris-Choice" for="RadioButton33"><span class="Polaris-Choice__Control"><span
+                              class="Polaris-RadioButton"><input id="RadioButton33" name="ChoiceList15" type="radio"
+                                class="Polaris-RadioButton__Input" value="bank"><span
+                                class="Polaris-RadioButton__Backdrop"></span><span
+                                class="Polaris-RadioButton__Icon"></span></span></span><span
+                            class="Polaris-Choice__Label">Bank Transfer</span></label></li>
+                    </ul>
+                  </fieldset>
+                </div>
+                <!-- Bank Details-->
+                <div
+                  style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;" >
+                    <div class="Polaris-FormLayout">
+                      <div class="Polaris-FormLayout__Item"> <!--BankName-->
+                        <div class="Polaris-Labelled__LabelWrapper">
+                          <div class="Polaris-Label"><label id="TextField1Label" for="TextField1"
+                              class="Polaris-Label__Text">Bank Name</label></div>
+                        </div>
+                        <div class="Polaris-TextField"><input id="TextField1" class="Polaris-TextField__Input"
+                            type="email" aria-describedby="TextField1HelpText" aria-label="BankName"
+                            aria-labelledby="TextField1Label" placeholder="Enter email for notifications" aria-invalid="false" value="">
+                          <div class="Polaris-TextField__Backdrop"></div>
+                        </div>
+                      </div>
+                      <div class="Polaris-FormLayout__Item"> <!--IFSCCode-->
+                          <div class="Polaris-Labelled__LabelWrapper">
+                            <div class="Polaris-Label"><label id="TextField1Label" for="TextField1"
+                                class="Polaris-Label__Text">IFSC Code</label></div>
+                          </div>
+                          <div class="Polaris-TextField"><input id="TextField1" class="Polaris-TextField__Input"
+                              type="email" aria-describedby="TextField1HelpText" aria-label="IFSCCode"
+                              aria-labelledby="TextField1Label" placeholder="IFSC Code" aria-invalid="false" value="">
+                            <div class="Polaris-TextField__Backdrop"></div>
+                          </div>
+                        </div>
+                        <div class="Polaris-FormLayout__Item"> <!--AccountNumber-->
+                            <div class="Polaris-Labelled__LabelWrapper">
+                              <div class="Polaris-Label"><label id="TextField1Label" for="TextField1"
+                                  class="Polaris-Label__Text">Account Number</label></div>
+                            </div>
+                            <div class="Polaris-TextField"><input id="TextField1" class="Polaris-TextField__Input"
+                                type="email" aria-describedby="TextField1HelpText" aria-label="AccountNumber"
+                                aria-labelledby="TextField1Label" placeholder="Account Number" aria-invalid="false" value="">
+                              <div class="Polaris-TextField__Backdrop"></div>
+                            </div>
+                          </div>
+                          <div class="Polaris-FormLayout__Item">
+                              <div class="Polaris-Labelled__LabelWrapper">
+                                <div class="Polaris-Label"><label id="TextField1Label" for="TextField1"
+                                    class="Polaris-Label__Text">Branch</label></div>
+                              </div>
+                              <div class="Polaris-TextField"><input id="TextField1" class="Polaris-TextField__Input"
+                                  type="email" aria-describedby="TextField1HelpText" aria-label="BankBranch"
+                                  aria-labelledby="TextField1Label" placeholder="Branch" aria-invalid="false" value="">
+                                <div class="Polaris-TextField__Backdrop"></div>
+                              </div>
+                            </div>
+                      <div class="Polaris-FormLayout__Item"><button type="submit" class="Polaris-Button"><span
+                            class="Polaris-Button__Content"><span
+                              class="Polaris-Button__Text">Submit</span></span></button></div>
+                    </div><span class="Polaris-VisuallyHidden"><button type="submit" aria-hidden="true"></button></span>
+                </div>
+                <!-- End of bank details-->
+                <!--End of section details-->
               </div>
             </div>
           </div>
