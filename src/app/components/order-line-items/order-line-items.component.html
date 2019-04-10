@@ -151,19 +151,19 @@
                     <ul class="Polaris-ChoiceList__Choices">
                       <li><label class="Polaris-Choice" for="RadioButton31"><span class="Polaris-Choice__Control"><span
                               class="Polaris-RadioButton"><input id="RadioButton31" name="ChoiceList15" type="radio"
-                                class="Polaris-RadioButton__Input" value="refund" checked="" ><span
+                                class="Polaris-RadioButton__Input" value="refund" checked="" [(ngModel)]="orders.returnMethod" ><span
                                 class="Polaris-RadioButton__Backdrop"></span><span
                                 class="Polaris-RadioButton__Icon"></span></span></span><span
                             class="Polaris-Choice__Label">Refund</span></label></li>
                       <li><label class="Polaris-Choice" for="RadioButton32"><span class="Polaris-Choice__Control"><span
                               class="Polaris-RadioButton"><input id="RadioButton32" name="ChoiceList15" type="radio"
-                                class="Polaris-RadioButton__Input" value="exchange"><span
+                                class="Polaris-RadioButton__Input" value="exchange" [(ngModel)]="orders.returnMethod" ><span
                                 class="Polaris-RadioButton__Backdrop"></span><span
                                 class="Polaris-RadioButton__Icon"></span></span></span><span
                             class="Polaris-Choice__Label">Exchange</span></label></li>
                       <li><label class="Polaris-Choice" for="RadioButton33"><span class="Polaris-Choice__Control"><span
                               class="Polaris-RadioButton"><input id="RadioButton33" name="ChoiceList15" type="radio"
-                                class="Polaris-RadioButton__Input" value="bank"><span
+                                class="Polaris-RadioButton__Input" value="bank" [(ngModel)]="orders.returnMethod" ><span
                                 class="Polaris-RadioButton__Backdrop"></span><span
                                 class="Polaris-RadioButton__Icon"></span></span></span><span
                             class="Polaris-Choice__Label">Bank Transfer</span></label></li>
@@ -172,7 +172,7 @@
                 </div>
                 <!-- Bank Details-->
                 <div
-                  style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;" >
+                  style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;" *ngIf="orders.returnMethod === 'bank'" >
                     <div class="Polaris-FormLayout">
                       <div class="Polaris-FormLayout__Item"> <!--BankName-->
                         <div class="Polaris-Labelled__LabelWrapper">
@@ -181,7 +181,7 @@
                         </div>
                         <div class="Polaris-TextField"><input id="TextField1" class="Polaris-TextField__Input"
                             type="email" aria-describedby="TextField1HelpText" aria-label="BankName"
-                            aria-labelledby="TextField1Label" placeholder="Enter email for notifications" aria-invalid="false" value="">
+                            aria-labelledby="TextField1Label" placeholder="Bank Name" aria-invalid="false" value="">
                           <div class="Polaris-TextField__Backdrop"></div>
                         </div>
                       </div>
