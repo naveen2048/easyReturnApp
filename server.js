@@ -30,7 +30,6 @@ app.get("/shop/:id", (req, res, next) => {
    });
 });
 
-app.get()
 
 //Route: Orders
 app.use("/api", order);
