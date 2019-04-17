@@ -43,7 +43,7 @@ router.get("/shopify/callback", (req, res) => {
     const { shop, hmac, code, state } = req.query;
     const stateCookie = cookie.parse(req.headers.cookie).state;
 
-    db.shop_tokens.save( { "shop": shop, "hmac": hmac }, function(err, token){
+    db.shoptokens.save( { "shop": shop, "hmac": hmac }, function(err, token){
        if(err){
            res.status(400);
            res.json({error: "Exception saving record to the backend, please try again"});
