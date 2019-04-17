@@ -9,7 +9,10 @@ const querystring = require("querystring");
 const request = require("request-promise");
 var config = require("../config");
 
-var db = require("./db").getDb();
+var dbModule = require("./routes/db");
+dbModule.initDb();
+
+var db = dbModule.getDb();
 
 // Installation App request
 router.get("/shopify", (req, res) => {
