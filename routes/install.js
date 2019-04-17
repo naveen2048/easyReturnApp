@@ -53,9 +53,10 @@ router.get("/shopify/callback", (req, res) => {
            res.json({error: "Exception saving record to the backend, please try again"});
        }
     });
+    var _parentPath = path.resolve(__dirname , ".." );
 
     //TODO: Need to build more logic before redirecting. For testing, saving token details to db and redirecting to home
-    res.sendFile(path.join(__dirname + "/dist/index.html"));
+    res.sendFile(_parentPath + "/dist/index.html");
 });
 
 function GetAccessToken(shop, tempcode, req, res) {
