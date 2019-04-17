@@ -7,10 +7,14 @@ const crypto = require("crypto");
 const morgan = require("morgan");
 const querystring = require("querystring");
 const request = require("request-promise");
+var config = require("../config");
+var dbModule = require("./routes/db");
+
+var db = dbModule.getDb();
 
 // Installation App request
 router.get("/shopify", (req, res) => {
-    const shop = req.query.shop;
+    const shop = req.params.shop;
 
     if(shop){
       const state = nonce();
@@ -18,7 +22,7 @@ router.get("/shopify", (req, res) => {
       const installUrl = 
       "https:" +
       shop +
-      "/admin/oauth/authorize?client_id=" +
+      "myshopify.com/admin/oauth/authorize?client_id=" +
       config.apiKey + 
       "&scope=" +
       config.scopes +
@@ -42,11 +46,17 @@ router.get("/shopify/callback", (req, res) => {
     const { shop, hmac, code, state } = req.query;
     const stateCookie = cookie.parse(req.headers.cookie).state;
 
+    db.shop_tokens.save( { "shop": shop, "hmac": hmac }, function(err, token){
+       if(err){
+           res.status(400);
+           res.json({error: "Exception saving record to the backend, please try again"});
+       }
+    });
 });
 
 function GetAccessToken(shop, tempcode, req, res) {
     //Get permenant access_token for the store and save to DB for future use
-    const accessTokenRequestUrl = "https://" + shop + "/admin/oauth/access_token";
+    const accessTokenRequestUrl = "https://" + shop + ".myshopify.com/admin/oauth/access_token";
   
     const accessTokenPayload = {
       client_id: config.apiKey,
