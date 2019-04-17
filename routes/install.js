@@ -26,8 +26,6 @@ router.get("/shopify", (req, res) => {
       config.apiKey + 
       "&scope=" +
       config.scopes +
-      "&state=" + 
-      config.state +
       "&redirect_uri=" +
       redirectUri
 
