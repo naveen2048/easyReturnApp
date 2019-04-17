@@ -22,7 +22,7 @@ router.get("/shopify", (req, res) => {
       const installUrl = 
       "https:" +
       shop +
-      "myshopify.com/admin/oauth/authorize?client_id=" +
+      "/admin/oauth/authorize?client_id=" +
       config.apiKey + 
       "&scope=" +
       config.scopes +
