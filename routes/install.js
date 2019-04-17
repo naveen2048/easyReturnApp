@@ -9,7 +9,7 @@ const querystring = require("querystring");
 const request = require("request-promise");
 var config = require("../config");
 
-var dbModule = require("./routes/db");
+var dbModule = require("./db");
 dbModule.initDb();
 
 var db = dbModule.getDb();
