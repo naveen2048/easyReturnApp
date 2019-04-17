@@ -8,7 +8,7 @@ const morgan = require("morgan");
 const querystring = require("querystring");
 const request = require("request-promise");
 var config = require("../config");
-var dbModule = require("./routes/db");
+var dbModule = require("./db");
 
 var db = dbModule.getDb();
 
