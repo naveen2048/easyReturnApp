@@ -14,7 +14,7 @@ var db = dbModule.getDb();
 
 // Installation App request
 router.get("/shopify", (req, res) => {
-    const shop = req.params.shop;
+    const shop = req.query.shop;
 
     if(shop){
       const state = nonce();
