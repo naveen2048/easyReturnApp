@@ -9,6 +9,7 @@ const querystring = require("querystring");
 const request = require("request-promise");
 var config = require("../config");
 
+
 var dbModule = require("./db");
 dbModule.initDb();
 
@@ -46,12 +47,15 @@ router.get("/shopify/callback", (req, res) => {
     const { shop, hmac, code, state } = req.query;
     const stateCookie = cookie.parse(req.headers.cookie).state;
 
-    db.shoptokens.save( { "shop": shop, "hmac": hmac }, function(err, token){
+    db.shoptokens.save( { "shop": shop, "hmac": hmac, "token": code, "state": state }, function(err, token){
        if(err){
            res.status(400);
            res.json({error: "Exception saving record to the backend, please try again"});
        }
     });
+
+    //TODO: Need to build more logic before redirecting. For testing, saving token details to db and redirecting to home
+    res.sendFile(path.join(__dirname + "/dist/index.html"));
 });
 
 function GetAccessToken(shop, tempcode, req, res) {
