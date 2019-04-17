@@ -29,7 +29,7 @@ router.get("/shopify", (req, res) => {
       "&redirect_uri=" +
       redirectUri
 
-      res.cookie("state",state);
+      //res.cookie("state",state);
       res.redirect(installUrl);
     }
     else{
