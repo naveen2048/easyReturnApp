@@ -47,16 +47,13 @@ router.get("/shopify/callback", (req, res) => {
     const { shop, hmac, code, state } = req.query;
     const stateCookie = cookie.parse(req.headers.cookie).state;
 
-    db.shoptokens.save( { "shop": shop, "hmac": hmac, "token": code, "state": state }, function(err, token){
-       if(err){
-           res.status(400);
-           res.json({error: "Exception saving record to the backend, please try again"});
-       }
-    });
-    var _parentPath = path.resolve(__dirname , ".." );
-
-    //TODO: Need to build more logic before redirecting. For testing, saving token details to db and redirecting to home
-    res.sendFile(_parentPath + "/dist/index.html");
+    //validate if response is from Shopify, then proceed
+     if(validateRequest(req, hmac)){
+        GetAccessToken(shop,code,req,res);
+     }
+     else{
+      res.status(400).send("Invalid hmac code supplied");
+     }
 });
 
 function GetAccessToken(shop, tempcode, req, res) {
@@ -86,12 +83,13 @@ function GetAccessToken(shop, tempcode, req, res) {
           isactive: true
         };
   
-        db.appUsers.save(appUser, function(err, user) {
+        db.shoptokens.save(appUser, function(err, user) {
           if (err) {
             res.send(err);
           }
           //res.json(user);
-          res.sendFile(path.join(__dirname + "/dist/index.html"));
+          var _parentPath = path.resolve(__dirname , ".." );
+          res.sendFile(_parentPath + "/dist/index.html");
         });
       });
   }
@@ -105,7 +103,7 @@ function GetAccessToken(shop, tempcode, req, res) {
     const providedHmac = Buffer.from(hmac, "utf-8");
     const generatedHash = Buffer.from(
       crypto
-        .createHmac("sha256", apiSecret)
+        .createHmac("sha256", config.apiSecret)
         .update(message)
         .digest("hex"),
       "utf-8"
