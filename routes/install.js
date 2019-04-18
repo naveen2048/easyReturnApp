@@ -58,7 +58,7 @@ router.get("/shopify/callback", (req, res) => {
 
 function GetAccessToken(shop, tempcode, req, res) {
     //Get permenant access_token for the store and save to DB for future use
-    const accessTokenRequestUrl = "https://" + shop + ".myshopify.com/admin/oauth/access_token";
+    const accessTokenRequestUrl = "https://" + shop + "/admin/oauth/access_token";
   
     const accessTokenPayload = {
       client_id: config.apiKey,
