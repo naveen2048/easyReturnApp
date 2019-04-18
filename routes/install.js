@@ -48,12 +48,12 @@ router.get("/shopify/callback", (req, res) => {
     const stateCookie = cookie.parse(req.headers.cookie).state;
 
     //validate if response is from Shopify, then proceed
-     if(validateRequest(req, hmac)){
+     //if(validateRequest(req, hmac)){
         GetAccessToken(shop,code,req,res);
-     }
-     else{
-      res.status(400).send("Invalid hmac code supplied");
-     }
+    //  }
+    //  else{
+    //   res.status(400).send("Invalid hmac code supplied");
+    //  }
 });
 
 function GetAccessToken(shop, tempcode, req, res) {
