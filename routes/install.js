@@ -66,9 +66,9 @@ function GetAccessToken(shop, tempcode, req, res) {
       code: tempcode
     };
   
-    superagent
+    request
       .post(accessTokenRequestUrl, { json: accessTokenPayload })
-      .end((err, response) => {
+      .then((response) => {
         let access_token = response.access_token;
   
         // Save to database
