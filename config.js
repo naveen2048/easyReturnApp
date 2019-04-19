@@ -3,6 +3,6 @@ module.exports = {
     'database': 'mongodb://easyreturn:easyreturn123@ds115595.mlab.com:15595/easyreturn',
     'apiKey':'34ee215948dfd0d4508fbc872792e642',
     'apiSecret':'8b4c31c59f1d87bf07101c50a66c5020',
-    'scopes':'read_products',
+    'scopes':'read_products,read_orders',
     'forwardingAddress':'https://easyreturn.herokuapp.com'
 };
