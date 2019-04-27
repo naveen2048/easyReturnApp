@@ -47,9 +47,9 @@ export class OrderSearchComponent implements OnInit {
             {
               title: d.title,
               description: d.name,
-              image: images.products.length == 0 ? '' : images.products.map(i => {
-                if(i.images.length > 0 && (i.images[0].product_id == d.product_id)){
-                  return i.images[0].src;
+              image: images.products.length === 0 ? '' : images.products.map(i => {
+                if(i.images.length > 0 && (i.images[0].product_id === d.product_id)){
+                  return i.images[0].src.indexOf('.') ? i.images[0].src : '../../../assets/images/noimage.png';
                 }
                 //else {return '../../../assets/images/noimage.png'}
               })
