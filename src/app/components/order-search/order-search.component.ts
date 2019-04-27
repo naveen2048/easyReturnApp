@@ -1,6 +1,7 @@
-import { IReturnModel } from './../../models/order.model';
+import { IReturnModel, IOrderRequestModel } from './../../models/order.model';
 import { Component, OnInit } from '@angular/core';
 import { IOrderModel } from 'src/app/models/order.model';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
 	selector: 'app-order-search',
@@ -10,7 +11,6 @@ import { IOrderModel } from 'src/app/models/order.model';
 export class OrderSearchComponent implements OnInit {
 	emailOrphone: string;
 	orderNo: any;
-
 	orders: IReturnModel = {
 		notes: '',
 		notificationEmail: '',
@@ -19,42 +19,56 @@ export class OrderSearchComponent implements OnInit {
 		bankBranch: '',
 		ifscCode: '',
 		accountName: '',
-		orderitems: [
-			{
-				title: 'T-Shirt',
-				description: 'This is fancy',
-				image: 'https://burst.shopifycdn.com/photos/black-orange-stripes_373x@2x.jpg',
-				quantity: 2,
-				reasonforreturn: '',
-				returnquantity: 0,
-				notes: ''
-			},
-			{
-				title: 'Salwar',
-				description: 'Indian Traditional dress',
-				image: 'https://burst.shopifycdn.com/photos/tucan-scarf_373x@2x.jpg',
-				quantity: 1,
-				reasonforreturn: '',
-				returnquantity: 0,
-				notes: ''
-      },
-      {
-				title: 'Boxer',
-				description: 'Summer wear',
-				image: 'https://burst.shopifycdn.com/photos/tucan-scarf_373x@2x.jpg',
-				quantity: 3,
-				reasonforreturn: '',
-				returnquantity: 0,
-				notes: ''
-			}
-		]
-	};
+		orderitems: []
+  };
+  showLoader:boolean = false;
 
-	constructor() { }
+	constructor(private orderService: OrderService) { }
 
-	ngOnInit() {}
+	ngOnInit() { this.getToken(); }
 
 	searchOrder() {
-		alert('Searching Order...');
-	}
+   this.showLoader = true;
+   this.orders = { orderitems: [] } as IReturnModel;
+
+   var result = this.orderService
+       .getOrder({ shop: this.orderService.Token.shop, email: this.emailOrphone, order_number: this.orderNo, token: this.orderService.Token.token  })
+       .subscribe((data:any) => {
+         //console.log(data)
+
+         let productids = data.orders[0].line_items.map(d => {
+               return d.product_id
+         }).join(',');
+
+        // Product images API call
+         this.orderService.getProductsImages(productids).subscribe((images:any) => {
+          data.orders[0].line_items.forEach(d => {
+            this.orders.orderitems.push(
+            {
+              title: d.title,
+              description: d.name,
+              image: images.products.length == 0 ? '' : images.products.map(i => {
+                if(i.images.length > 0 && (i.images[0].product_id == d.product_id)){
+                  return i.images[0].src;
+                }
+                //else {return '../../../assets/images/noimage.png'}
+              })
+              ,
+              quantity: d.quantity,
+              reasonforreturn: '',
+              returnquantity: d.quantity,
+              notes: '',
+              product_id: d.product_id
+              })
+           });
+           this.showLoader = false;
+         });
+       });
+  }
+  
+  getToken(){
+    //TODO: Remove hard-coded value in getShopToken. This will be passed in as parameter
+   var result = this.orderService
+        .getShopToken('meesala-store.myshopify.com');
+  }
 }

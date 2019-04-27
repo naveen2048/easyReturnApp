@@ -29,12 +29,14 @@
                   </div>
                 </div>
               </div>
+                            
             </div>
           </div>
         </div>
       </div>
     </div>
+      <!--Loader-->
+      <app-loader [show]="showLoader"></app-loader>
   </div>
 </main>
-
-<app-order-line-items *ngIf="orders" [orders]="orders"></app-order-line-items>
+<app-order-line-items *ngIf="orders && orders.orderitems.length > 0" [orders]="orders"></app-order-line-items>

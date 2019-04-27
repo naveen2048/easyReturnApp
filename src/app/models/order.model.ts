@@ -6,6 +6,7 @@ export interface IOrderModel{
     reasonforreturn:string;
     returnquantity:number;
     notes:string;
+    product_id:any;
 }
 
 export interface IReturnModel {
@@ -17,4 +18,11 @@ export interface IReturnModel {
     ifscCode:string;
     accountName:string;
     bankBranch:string;
+}
+
+export interface IOrderRequestModel{
+    shop:string;
+    order_number:any;
+    token:any;
+    email:string;
 }

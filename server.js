@@ -21,7 +21,7 @@ app.listen(process.env.PORT || 8081);
 app.get("/shop/:id", (req, res, next) => {
    let shop = req.params.id;
 
-   db.shops.find({ SHOP: shop }, function(err, _shop){
+   db.shoptokens.find({ shop: shop }, function(err, _shop){
        if(err){
            res.send(err);
        }

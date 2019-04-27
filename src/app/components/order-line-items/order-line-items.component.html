@@ -17,7 +17,9 @@
                           <div class="Polaris-Stack__Item Polaris-Stack__Item--fill">
                             <h2 class="Polaris-Heading">{{line.title}}</h2>
                             <div class="Polaris-ResourceList-Item__Media"><span
-                                class="Polaris-Thumbnail Polaris-Thumbnail--sizeMedium"><img src="{{line.image}}"
+                                class="Polaris-Thumbnail Polaris-Thumbnail--sizeMedium">
+                                <!-- <app-image-loader [image]="line.image" [description]="line.description"></app-image-loader> -->
+                                <img [src]="(line.image === ',' || line.image === 'undefined') ? '../../../../../assets/images/noimage.png' : line.image"
                                   alt="{{line.description}}" class="Polaris-Thumbnail__Image"></span>
                             </div>
                             {{line.description}}
