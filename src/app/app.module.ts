@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OrderSearchComponent } from './components/order-search/order-search.component';
@@ -12,6 +13,7 @@ import { OrderService } from './services/order.service';
 import { SharedComponent } from './components/shared/shared.component';
 import { LoaderComponent } from './components/shared/loader/loader.component';
 import { ImageLoaderComponent } from './components/shared/image-loader/image-loader.component';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
   declarations: [
@@ -25,12 +27,15 @@ import { ImageLoaderComponent } from './components/shared/image-loader/image-loa
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ToastrModule.forRoot()
   ],
   providers: [
-    OrderService
+    OrderService,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })
