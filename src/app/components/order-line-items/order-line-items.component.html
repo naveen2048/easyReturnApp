@@ -4,6 +4,9 @@
         <div class="Polaris-Layout">
           <div class="Polaris-Layout__Section">
             <div class="Polaris-Card">
+                <div class="Polaris-Card__Header">
+                  Email: <b>{{orders.notificationEmail}}</b> | Order #: <b>{{orders.orderNumber}}</b>
+                  </div>
               <div class="Polaris-Card__Section">
                 <!-- Line Items  -->
                 <div
@@ -19,8 +22,6 @@
                             <div class="Polaris-ResourceList-Item__Media"><span
                                 class="Polaris-Thumbnail Polaris-Thumbnail--sizeMedium">
                                 <app-image-loader [image]="line.image" [description]="line.description"></app-image-loader>
-                                <!-- <img [src]="(line.image === '' || line.image === ',' || line.image === 'undefined') ? '../../../../assets/images/noimage.png' : line.image"
-                                  alt="{{line.description}}" class="Polaris-Thumbnail__Image"> -->
                                 </span>
                             </div>
                             {{line.description}}
@@ -31,6 +32,7 @@
                               <div class="Polaris-FormLayout">
                                 <div role="group" class="Polaris-FormLayout--grouped">
                                   <div class="Polaris-FormLayout__Items">
+                                    <!-- Reason for return -->
                                     <div class="Polaris-FormLayout__Item">
                                       <div class="">
                                         <div class="Polaris-Labelled__LabelWrapper">
@@ -58,6 +60,7 @@
                                         </div>
                                       </div>
                                     </div>
+                                    <!-- Return quantity-->
                                     <div class="Polaris-FormLayout__Item">
                                       <div class="">
                                         <div class="Polaris-Labelled__LabelWrapper">
@@ -84,6 +87,33 @@
                                         </div>
                                       </div>
                                     </div>
+                                    <!-- Refund method -->
+                                    <div class="Polaris-FormLayout__Item">
+                                        <div class="">
+                                          <div class="Polaris-Labelled__LabelWrapper">
+                                            <div class="Polaris-Label"><label id="TextField6Label" for="TextField6"
+                                                class="Polaris-Label__Text">Return Method</label></div>
+                                          </div>
+                                          <div class="Polaris-Select">
+                                            <select id="Select6" class="Polaris-Select__Input"
+                                              [(ngModel)]="line.returnMethod" aria-invalid="false" (change)="refundSelect(line.returnMethod)">
+                                              <option value="{{item.value}}"
+                                                *ngFor="let item of refundMethods">{{item.text}}
+                                              </option>
+                                            </select>
+                                            <div class="Polaris-Select__Content" aria-hidden="true"><span
+                                                class="Polaris-Select__SelectedOption">{{line.returnMethod}}</span><span
+                                                class="Polaris-Select__Icon"><span class="Polaris-Icon"><svg
+                                                    viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false"
+                                                    aria-hidden="true">
+                                                    <path d="M13 8l-3-3-3 3h6zm-.1 4L10 14.9 7.1 12h5.8z"
+                                                      fill-rule="evenodd">
+                                                    </path>
+                                                  </svg></span></span></div>
+                                            <div class="Polaris-Select__Backdrop"></div>
+                                          </div>
+                                        </div>
+                                      </div>
                                   </div>
                                 </div>
                                 <div class="Polaris-FormLayout--grouped"
@@ -138,16 +168,16 @@
           <!-- Other information like Bank Details
             Chose refund method
             Final notes, if any
-            Notification email 
+            Notification email
           -->
-          <div class="Polaris-Layout__Section Polaris-Layout__Section--secondary">
+          <div class="Polaris-Layout__Section Polaris-Layout__Section--secondary" *ngIf="refund">
             <div class="Polaris-Card">
               <div class="Polaris-Card__Header">
-                <h2 class="Polaris-Heading">Refund Method</h2>
+                <h2 class="Polaris-Heading">Bank Details</h2>
               </div>
               <div class="Polaris-Card__Section">
                 <!-- Section details go here -->
-                <div
+                <!-- <div
                   style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
                   <fieldset class="Polaris-ChoiceList" id="ChoiceList15" aria-invalid="false"
                     aria-describedby="ChoiceList15Error">
@@ -172,10 +202,10 @@
                             class="Polaris-Choice__Label">Bank Transfer</span></label></li>
                     </ul>
                   </fieldset>
-                </div>
+                </div> -->
                 <!-- Bank Details-->
                 <div
-                  style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;" *ngIf="orders.returnMethod === 'bank'" >
+                  style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
                     <div class="Polaris-FormLayout">
                       <div class="Polaris-FormLayout__Item"> <!--BankName-->
                         <div class="Polaris-Labelled__LabelWrapper">
@@ -183,7 +213,7 @@
                               class="Polaris-Label__Text">Bank Name</label></div>
                         </div>
                         <div class="Polaris-TextField"><input id="TextField1" class="Polaris-TextField__Input"
-                            type="email" aria-describedby="TextField1HelpText" aria-label="BankName"
+                            aria-describedby="TextField1HelpText" aria-label="BankName" [(ngModel)]="orders.bankName"
                             aria-labelledby="TextField1Label" placeholder="Bank Name" aria-invalid="false" value="">
                           <div class="Polaris-TextField__Backdrop"></div>
                         </div>
@@ -194,7 +224,7 @@
                                 class="Polaris-Label__Text">IFSC Code</label></div>
                           </div>
                           <div class="Polaris-TextField"><input id="TextField1" class="Polaris-TextField__Input"
-                              type="email" aria-describedby="TextField1HelpText" aria-label="IFSCCode"
+                              [(ngModel)]="orders.ifscCode" aria-describedby="TextField1HelpText" aria-label="IFSCCode"
                               aria-labelledby="TextField1Label" placeholder="IFSC Code" aria-invalid="false" value="">
                             <div class="Polaris-TextField__Backdrop"></div>
                           </div>
@@ -205,8 +235,19 @@
                                   class="Polaris-Label__Text">Account Number</label></div>
                             </div>
                             <div class="Polaris-TextField"><input id="TextField1" class="Polaris-TextField__Input"
-                                type="email" aria-describedby="TextField1HelpText" aria-label="AccountNumber"
+                                [(ngModel)]="orders.accountNumber" aria-describedby="TextField1HelpText" aria-label="AccountNumber"
                                 aria-labelledby="TextField1Label" placeholder="Account Number" aria-invalid="false" value="">
+                              <div class="Polaris-TextField__Backdrop"></div>
+                            </div>
+                          </div>
+                          <div class="Polaris-FormLayout__Item"> <!--AccountNumber-->
+                            <div class="Polaris-Labelled__LabelWrapper">
+                              <div class="Polaris-Label"><label id="TextField1Label" for="TextField1"
+                                  class="Polaris-Label__Text">Account Holder</label></div>
+                            </div>
+                            <div class="Polaris-TextField"><input id="TextField1" class="Polaris-TextField__Input"
+                                [(ngModel)]="orders.accountName" aria-describedby="TextField1HelpText" aria-label="AccountName"
+                                aria-labelledby="TextField1Label" placeholder="Account Holder" aria-invalid="false" value="">
                               <div class="Polaris-TextField__Backdrop"></div>
                             </div>
                           </div>
@@ -216,15 +257,15 @@
                                     class="Polaris-Label__Text">Branch</label></div>
                               </div>
                               <div class="Polaris-TextField"><input id="TextField1" class="Polaris-TextField__Input"
-                                  type="email" aria-describedby="TextField1HelpText" aria-label="BankBranch"
+                                [(ngModel)]="orders.bankBranch" aria-describedby="TextField1HelpText" aria-label="BankBranch"
                                   aria-labelledby="TextField1Label" placeholder="Branch" aria-invalid="false" value="">
                                 <div class="Polaris-TextField__Backdrop"></div>
                               </div>
                             </div>
-                      <div class="Polaris-FormLayout__Item"><button type="submit" class="Polaris-Button"><span
+                      <!-- <div class="Polaris-FormLayout__Item"><button type="submit" class="Polaris-Button"><span
                             class="Polaris-Button__Content"><span
                               class="Polaris-Button__Text">Submit</span></span></button></div>
-                    </div><span class="Polaris-VisuallyHidden"><button type="submit" aria-hidden="true"></button></span>
+                    </div><span class="Polaris-VisuallyHidden"><button type="submit" aria-hidden="true"></button></span> -->
                 </div>
                 <!-- End of bank details-->
                 <!--End of section details-->

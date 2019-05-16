@@ -1,3 +1,4 @@
+import { AppConstants } from './models/common.model';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -35,7 +36,8 @@ import { NotificationService } from './services/notification.service';
   ],
   providers: [
     OrderService,
-    NotificationService
+    NotificationService,
+    AppConstants
   ],
   bootstrap: [AppComponent]
 })

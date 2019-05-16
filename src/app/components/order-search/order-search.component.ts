@@ -13,13 +13,14 @@ export class OrderSearchComponent implements OnInit {
   emailOrphone: string;
   orderNo: any;
   orders: IReturnModel = {
+    orderNumber:'',
     notes: '',
     notificationEmail: '',
-    returnMethod: 'refund',
     bankName: '',
     bankBranch: '',
     ifscCode: '',
     accountName: '',
+    accountNumber:'',
     orderitems: []
   };
   showLoader = false;
@@ -35,7 +36,17 @@ export class OrderSearchComponent implements OnInit {
 
   searchOrder() {
     this.showLoader = true;
-    this.orders = { orderitems: [] } as IReturnModel;
+    this.orders = {
+      orderNumber:'',
+      notes: '',
+      notificationEmail: '',
+      bankName: '',
+      bankBranch: '',
+      ifscCode: '',
+      accountName: '',
+      accountNumber:'',
+      orderitems: []
+    };
 
     const result = this.orderService
       .getOrder({
@@ -77,10 +88,19 @@ export class OrderSearchComponent implements OnInit {
                   reasonforreturn: '',
                   returnquantity: d.quantity,
                   notes: '',
-                  product_id: d.product_id
+                  product_id: d.product_id,
+                  returnMethod:''
                 });
               });
               this.showLoader = false;
+
+              //update the Notification email & Order number to model to back track in Admin
+              this.orders.notificationEmail = this.emailOrphone;
+              this.orders.orderNumber = this.orderNo;
+
+              //Clear the search fields, for next search if any
+              this.emailOrphone = '';
+              this.orderNo = '';
             });
         },
         error => {

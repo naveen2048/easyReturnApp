@@ -7,10 +7,11 @@ export interface IOrderModel{
     returnquantity:number;
     notes:string;
     product_id:any;
+    returnMethod:string;
 }
 
 export interface IReturnModel {
-    returnMethod:string;
+    orderNumber:string;
     notes:string;
     notificationEmail:string;
     orderitems: IOrderModel[];
@@ -18,6 +19,7 @@ export interface IReturnModel {
     ifscCode:string;
     accountName:string;
     bankBranch:string;
+    accountNumber:string;
 }
 
 export interface IOrderRequestModel{
