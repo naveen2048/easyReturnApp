@@ -72,4 +72,16 @@ router.post("/order/product_images", (req, res) => {
   });
 });
 
+router.post("/order/refund", (req, res) => {
+  let body = "";
+  req.on("data", chunk => {
+    body += chunk.toString(); // convert Buffer to string
+  });
+  req.on("end", () => {
+    //perform db save operation
+    var _data = JSON.parse(body);
+    res.send(_data);
+  });
+});
+
 module.exports = router;

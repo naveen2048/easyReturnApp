@@ -116,4 +116,9 @@ export class OrderSearchComponent implements OnInit {
       'meesala-store.myshopify.com'
     );
   }
+
+  submit(){
+    this.orderService.submitRefund(this.orders)
+        .subscribe(d => console.log(d));
+  }
 }

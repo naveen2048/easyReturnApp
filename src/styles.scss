@@ -1,2 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~ngx-toastr/toastr.css';
+
+#floating_sidebar {
+  position:fixed;
+  right: -48px;
+  top: 50%; /* change to adjust height from the top of the page */
+ }
+
+ .rotate{
+  vertical-align:top;
+  margin-top:23px;
+  width:130px;height:30px;
+  transform:rotate(7deg);
+  -ms-transform:rotate(90deg); /* IE 9 */
+  -moz-transform:rotate(90deg); /* Firefox */
+  -webkit-transform:rotate(90deg); /* Safari and Chrome */
+  -o-transform:rotate(90deg); /* Opera */
+}

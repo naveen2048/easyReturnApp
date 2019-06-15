@@ -40,3 +40,9 @@
   </div>
 </main>
 <app-order-line-items *ngIf="orders && orders.orderitems.length > 0" [orders]="orders"></app-order-line-items>
+<!--Save button -->
+<div id="floating_sidebar">
+    <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+        <button type="button" class="Polaris-Button Polaris-Button--primary Polaris-Button--fullWidth rotate" (click)="submit()"><span class="Polaris-Button__Content">
+          <span class="Polaris-Button__Text">Submit Refund</span></span></button></div>
+</div>

@@ -176,33 +176,6 @@
                 <h2 class="Polaris-Heading">Bank Details</h2>
               </div>
               <div class="Polaris-Card__Section">
-                <!-- Section details go here -->
-                <!-- <div
-                  style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
-                  <fieldset class="Polaris-ChoiceList" id="ChoiceList15" aria-invalid="false"
-                    aria-describedby="ChoiceList15Error">
-                    <ul class="Polaris-ChoiceList__Choices">
-                      <li><label class="Polaris-Choice" for="RadioButton31"><span class="Polaris-Choice__Control"><span
-                              class="Polaris-RadioButton"><input id="RadioButton31" name="ChoiceList15" type="radio"
-                                class="Polaris-RadioButton__Input" value="refund" checked="" [(ngModel)]="orders.returnMethod" ><span
-                                class="Polaris-RadioButton__Backdrop"></span><span
-                                class="Polaris-RadioButton__Icon"></span></span></span><span
-                            class="Polaris-Choice__Label">Refund</span></label></li>
-                      <li><label class="Polaris-Choice" for="RadioButton32"><span class="Polaris-Choice__Control"><span
-                              class="Polaris-RadioButton"><input id="RadioButton32" name="ChoiceList15" type="radio"
-                                class="Polaris-RadioButton__Input" value="exchange" [(ngModel)]="orders.returnMethod" ><span
-                                class="Polaris-RadioButton__Backdrop"></span><span
-                                class="Polaris-RadioButton__Icon"></span></span></span><span
-                            class="Polaris-Choice__Label">Exchange</span></label></li>
-                      <li><label class="Polaris-Choice" for="RadioButton33"><span class="Polaris-Choice__Control"><span
-                              class="Polaris-RadioButton"><input id="RadioButton33" name="ChoiceList15" type="radio"
-                                class="Polaris-RadioButton__Input" value="bank" [(ngModel)]="orders.returnMethod" ><span
-                                class="Polaris-RadioButton__Backdrop"></span><span
-                                class="Polaris-RadioButton__Icon"></span></span></span><span
-                            class="Polaris-Choice__Label">Bank Transfer</span></label></li>
-                    </ul>
-                  </fieldset>
-                </div> -->
                 <!-- Bank Details-->
                 <div
                   style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
@@ -273,6 +246,33 @@
             </div>
           </div>
         </div>
+        <!-- Order level notes section -->
+        <div class="Polaris-Layout__Section Polaris-Layout__Section--secondary">
+          <div class="Polaris-Card">
+            <div class="Polaris-Card__Header">
+              <h2 class="Polaris-Heading">Notes</h2>
+            </div>
+            <div class="Polaris-Card__Section">
+              <!-- main content-->
+              <div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+                <div class="">
+                  <div class="Polaris-Labelled__LabelWrapper">
+                    <!-- <div class="Polaris-Label"><label id="TextField3Label" for="TextField3" class="Polaris-Label__Text">Shipping address</label></div> -->
+                  </div>
+                  <div class="Polaris-TextField Polaris-TextField--hasValue Polaris-TextField--multiline">
+                    <textarea id="TextField3" [(ngModel)]="orders.notes" class="Polaris-TextField__Input" aria-invalid="false" aria-multiline="true" style="height: 60px;">1776 Barnes Street
+                   </textarea>
+                    <div class="Polaris-TextField__Backdrop"></div>
+                    <div aria-hidden="true" class="Polaris-TextField__Resizer">
+                      <!-- <div class="Polaris-TextField__DummyInput">1776 Barnes Street<br>Orlandoundefined FL 32801<br></div> -->
+                      <!-- <div class="Polaris-TextField__DummyInput"><br></div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+         </div>
       </div>
     </div>
   </div>
