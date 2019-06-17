@@ -90,8 +90,20 @@ router.post("/order/refund", (req, res) => {
       if (err) {
         res.send("Not able save");
       }
-      res.status(200).send("Refund applied successfully");
+      res.status(200).send(data);
     });
+  });
+});
+
+/*
+Admin orders
+*/
+router.get("/order/admin", (req, res) => {
+  db.orderrefund.find({}, (err, data) => {
+    if (err) {
+      res.send("Not reterieve data");
+    }
+    res.send(data);
   });
 });
 

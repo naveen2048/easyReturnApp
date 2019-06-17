@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { IOrderModel } from 'src/app/models/order.model';
 import { OrderService } from 'src/app/services/order.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-search',
@@ -27,7 +28,8 @@ export class OrderSearchComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -126,7 +128,7 @@ export class OrderSearchComponent implements OnInit {
   submit() {
     this.orderService.submitRefund(this.orders)
         .subscribe((d) => {
-          this.orders = null;
+          this.router.navigate(['/']);
         });
   }
 }

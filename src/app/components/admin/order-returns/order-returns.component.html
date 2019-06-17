@@ -1,3 +1,45 @@
-<p>
-  order-returns works!
-</p>
+<div style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+  <div class="Polaris-Page">
+    <div class="Polaris-Page-Header">
+      <div class="Polaris-Page-Header__TitleAndRollup">
+        <div class="Polaris-Page-Header__Title">
+          <div>
+            <h1 class="Polaris-DisplayText Polaris-DisplayText--sizeLarge">Refund - Orders</h1>
+          </div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+    <div class="Polaris-Page__Content">
+      <div class="Polaris-Card">
+        <div class="">
+          <div class="Polaris-DataTable__Navigation"><button type="button" class="Polaris-Button Polaris-Button--disabled Polaris-Button--plain Polaris-Button--iconOnly" disabled="" aria-label="Scroll table left one column"><span class="Polaris-Button__Content"><span class="Polaris-Button__Icon"><span class="Polaris-Icon"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
+                      <path d="M12 16a.997.997 0 0 1-.707-.293l-5-5a.999.999 0 0 1 0-1.414l5-5a.999.999 0 1 1 1.414 1.414L8.414 10l4.293 4.293A.999.999 0 0 1 12 16" fill-rule="evenodd"></path>
+                    </svg></span></span></span></button><button type="button" class="Polaris-Button Polaris-Button--plain Polaris-Button--iconOnly" aria-label="Scroll table right one column"><span class="Polaris-Button__Content"><span class="Polaris-Button__Icon"><span class="Polaris-Icon"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
+                      <path d="M8 16a.999.999 0 0 1-.707-1.707L11.586 10 7.293 5.707a.999.999 0 1 1 1.414-1.414l5 5a.999.999 0 0 1 0 1.414l-5 5A.997.997 0 0 1 8 16" fill-rule="evenodd"></path>
+                    </svg></span></span></span></button></div>
+          <div class="Polaris-DataTable">
+            <div class="Polaris-DataTable__ScrollContainer">
+              <table class="Polaris-DataTable__Table">
+                <thead>
+                  <tr>
+                    <th data-polaris-header-cell="true" class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--numeric" scope="col" style="height: 53px;">SKU Number</th>
+                    <th data-polaris-header-cell="true" class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--numeric" scope="col" style="height: 53px;">Net quantity</th>
+                    <th data-polaris-header-cell="true" class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header Polaris-DataTable__Cell--numeric" scope="col" style="height: 53px;">Net sales</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="Polaris-DataTable__TableRow" *ngFor="let order of orders">
+                    <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--numeric">{{order.orderNumber}}</td>
+                    <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--numeric">{{order.notificationEmail}}</td>
+                    <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell--numeric">{{order.notes}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
