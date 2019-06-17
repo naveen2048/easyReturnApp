@@ -57,6 +57,12 @@ export class OrderSearchComponent implements OnInit {
       })
       .subscribe(
         (data: any) => {
+          if (data.orders.length === 0) {
+            this.showLoader = false;
+            this.notification.showError('Something went wrong, please try again.');
+            return;
+          }
+
           const productids = data.orders[0].line_items
             .map(d => {
               return d.product_id;
@@ -117,8 +123,10 @@ export class OrderSearchComponent implements OnInit {
     );
   }
 
-  submit(){
+  submit() {
     this.orderService.submitRefund(this.orders)
-        .subscribe(d => console.log(d));
+        .subscribe((d) => {
+          this.orders = null;
+        });
   }
 }

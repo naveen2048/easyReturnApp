@@ -1,9 +1,10 @@
 var express = require("express");
 const { parse } = require("querystring");
 var router = express.Router();
-//var db = require("./db").getDb();
-var mongojs = require("./db").getMongojs();
+var dbModule = require("./db");
+dbModule.initDb();
 const superagent = require("superagent");
+var db = dbModule.getDb();
 
 router.post("/order", function(req, res) {
   let body = "";
@@ -31,7 +32,7 @@ router.post("/order", function(req, res) {
         //check to see if email and order # matches on the record received
         //console.log(response.text);
         var result = JSON.parse(response.text);
-        if (result.orders[0].email !== _data.email) {
+        if (!result.orders && (result.orders[0].email !== _data.email)) {
           res.status(404).send({
             error: "Email & Order # does not match. Please check and try again"
           });
@@ -72,15 +73,25 @@ router.post("/order/product_images", (req, res) => {
   });
 });
 
+/*
+Order refund
+*/
 router.post("/order/refund", (req, res) => {
   let body = "";
   req.on("data", chunk => {
     body += chunk.toString(); // convert Buffer to string
   });
   req.on("end", () => {
+    debugger;
     //perform db save operation
     var _data = JSON.parse(body);
-    res.send(_data);
+
+    db.orderrefund.save(_data, (err, data) => {
+      if (err) {
+        res.send("Not able save");
+      }
+      res.status(200).send("Refund applied successfully");
+    });
   });
 });
 
