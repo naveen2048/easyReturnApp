@@ -7,7 +7,10 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'admin', component: OrderReturnsComponent },
   { path: 'shop/:shop', component: OrderSearchComponent },
-  { path: 'home', component: OrderSearchComponent }
+  { path: 'home', component: OrderSearchComponent },
+  { path: 'shopify', redirectTo: 'admin' },
+  { path: 'shopify/**/', redirectTo: 'admin' },
+  // { path: '**', redirectTo: 'admin' }
 ];
 
 @NgModule({

@@ -9,15 +9,16 @@ import { OrderService } from '../../../services/order.service';
 export class OrderReturnsComponent implements OnInit {
 
   orders: any[] = [];
+  searchText = "";
 
-  constructor(private adminService: OrderService) { 
+  constructor(private adminService: OrderService) {
     this.adminService.getAdminOrders().subscribe(d => {
       this.orders = d;
     });
   }
 
   ngOnInit() {
-    
+
   }
 
 }
