@@ -10,10 +10,13 @@ export class OrderReturnsComponent implements OnInit {
 
   orders: any[] = [];
   searchText = "";
+  showLoader = false;
 
   constructor(private adminService: OrderService) {
+    this.showLoader = true;
     this.adminService.getAdminOrders().subscribe(d => {
       this.orders = d;
+      this.showLoader = !this.showLoader;
     });
   }
 
