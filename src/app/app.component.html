@@ -29,4 +29,37 @@
   </div>
 </div>
 <div class="Polaris-Frame-ToastManager"></div>
+<div class="Polaris-Sheet__Container" *ngIf="showSide" data-polaris-layer="true" data-polaris-overlay="true">
+  <div>
+    <div role="dialog" tabindex="-1" class="Polaris-Sheet">
+      <div style="display: flex; flex-direction: column; height: 100%;">
+        <div style="align-items: center; border-bottom: 1px solid rgb(223, 227, 232); display: flex; justify-content: space-between; padding: 1.6rem; width: 100%;">
+          <h2 class="Polaris-Heading">Manage sales channels</h2><button type="button" class="Polaris-Button Polaris-Button--plain Polaris-Button--iconOnly" aria-label="Cancel"><span class="Polaris-Button__Content"><span class="Polaris-Button__Icon"><span class="Polaris-Icon"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
+                    <path d="M11.414 10l6.293-6.293a.999.999 0 1 0-1.414-1.414L10 8.586 3.707 2.293a.999.999 0 1 0-1.414 1.414L8.586 10l-6.293 6.293a.999.999 0 1 0 1.414 1.414L10 11.414l6.293 6.293a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414L11.414 10z" fill-rule="evenodd"></path>
+                  </svg></span></span></span></button>
+        </div>
+        <div class="Polaris-Scrollable Polaris-Scrollable--vertical" data-polaris-scrollable="true" style="padding: 1.6rem; height: 100%;">
+          <fieldset class="Polaris-ChoiceList Polaris-ChoiceList--titleHidden" id="salesChannelsList[]" aria-invalid="false" aria-describedby="salesChannelsList[]Error">
+            <legend class="Polaris-ChoiceList__Title">Select a sales channel</legend>
+            <ul class="Polaris-ChoiceList__Choices">
+              <li><label class="Polaris-Choice" for="Checkbox9"><span class="Polaris-Choice__Control"><span class="Polaris-Checkbox"><input id="Checkbox9" name="salesChannelsList[]" type="checkbox" class="Polaris-Checkbox__Input" aria-invalid="false" role="checkbox" aria-checked="false" value="onlineStore"><span class="Polaris-Checkbox__Backdrop"></span><span class="Polaris-Checkbox__Icon"><span class="Polaris-Icon"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
+                            <path d="M8.315 13.859l-3.182-3.417a.506.506 0 0 1 0-.684l.643-.683a.437.437 0 0 1 .642 0l2.22 2.393 4.942-5.327a.437.437 0 0 1 .643 0l.643.684a.504.504 0 0 1 0 .683l-5.91 6.35a.437.437 0 0 1-.642 0"></path>
+                          </svg></span></span></span></span><span class="Polaris-Choice__Label">Online Store</span></label></li>
+              <li><label class="Polaris-Choice" for="Checkbox10"><span class="Polaris-Choice__Control"><span class="Polaris-Checkbox"><input id="Checkbox10" name="salesChannelsList[]" type="checkbox" class="Polaris-Checkbox__Input" aria-invalid="false" role="checkbox" aria-checked="false" value="facebook"><span class="Polaris-Checkbox__Backdrop"></span><span class="Polaris-Checkbox__Icon"><span class="Polaris-Icon"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
+                            <path d="M8.315 13.859l-3.182-3.417a.506.506 0 0 1 0-.684l.643-.683a.437.437 0 0 1 .642 0l2.22 2.393 4.942-5.327a.437.437 0 0 1 .643 0l.643.684a.504.504 0 0 1 0 .683l-5.91 6.35a.437.437 0 0 1-.642 0"></path>
+                          </svg></span></span></span></span><span class="Polaris-Choice__Label">Facebook</span></label></li>
+              <li><label class="Polaris-Choice" for="Checkbox11"><span class="Polaris-Choice__Control"><span class="Polaris-Checkbox"><input id="Checkbox11" name="salesChannelsList[]" type="checkbox" class="Polaris-Checkbox__Input" aria-invalid="false" role="checkbox" aria-checked="false" value="googleShopping"><span class="Polaris-Checkbox__Backdrop"></span><span class="Polaris-Checkbox__Icon"><span class="Polaris-Icon"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
+                            <path d="M8.315 13.859l-3.182-3.417a.506.506 0 0 1 0-.684l.643-.683a.437.437 0 0 1 .642 0l2.22 2.393 4.942-5.327a.437.437 0 0 1 .643 0l.643.684a.504.504 0 0 1 0 .683l-5.91 6.35a.437.437 0 0 1-.642 0"></path>
+                          </svg></span></span></span></span><span class="Polaris-Choice__Label">Google shopping</span></label></li>
+              <li><label class="Polaris-Choice" for="Checkbox12"><span class="Polaris-Choice__Control"><span class="Polaris-Checkbox"><input id="Checkbox12" name="salesChannelsList[]" type="checkbox" class="Polaris-Checkbox__Input" aria-invalid="false" role="checkbox" aria-checked="false" value="facebookMarketing"><span class="Polaris-Checkbox__Backdrop"></span><span class="Polaris-Checkbox__Icon"><span class="Polaris-Icon"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
+                            <path d="M8.315 13.859l-3.182-3.417a.506.506 0 0 1 0-.684l.643-.683a.437.437 0 0 1 .642 0l2.22 2.393 4.942-5.327a.437.437 0 0 1 .643 0l.643.684a.504.504 0 0 1 0 .683l-5.91 6.35a.437.437 0 0 1-.642 0"></path>
+                          </svg></span></span></span></span><span class="Polaris-Choice__Label">Facebook Marketing</span></label></li>
+            </ul>
+          </fieldset>
+        </div>
+        <div style="align-items: center; border-top: 1px solid rgb(223, 227, 232); display: flex; justify-content: space-between; padding: 1.6rem; width: 100%;"><button type="button" class="Polaris-Button" (click)="closeSheet()"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Cancel</span></span></button><button type="button" class="Polaris-Button Polaris-Button--primary"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Done</span></span></button></div>
+      </div>
+    </div>
+  </div>
+</div>
 

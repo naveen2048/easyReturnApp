@@ -98,7 +98,7 @@
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      <tr class="Polaris-DataTable__TableRow" *ngFor="let order of orders">
+                                      <tr class="Polaris-DataTable__TableRow" *ngFor="let order of orders" (click)="showDetails(order)">
                                         <th class="Polaris-DataTable__Cell  Polaris-DataTable__Cell--fixed">
                                           {{ order.orderNumber  }}</th>
                                         <td class="Polaris-DataTable__Cell  Polaris-DataTable__Cell--header">

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../../services/order.service';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-order-returns',
@@ -12,7 +13,8 @@ export class OrderReturnsComponent implements OnInit {
   searchText = "";
   showLoader = false;
 
-  constructor(private adminService: OrderService) {
+  constructor(private adminService: OrderService,
+      private commonService: CommonService) {
     this.showLoader = true;
     this.adminService.getAdminOrders().subscribe(d => {
       this.orders = d;
@@ -22,6 +24,10 @@ export class OrderReturnsComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  showDetails(order) {
+    this.commonService.toggleSideSheet(true, order);
   }
 
 }

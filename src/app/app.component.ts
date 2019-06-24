@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { CommonService } from './services/common.service';
 
 @Component({
   selector: 'app-root',
@@ -9,15 +9,23 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 })
 export class AppComponent implements OnInit {
   title = 'easyReturn App';
+  showSide = false;
+  data:any;
 
-  constructor(private router:Router, private params:ActivatedRoute){ }
+  constructor(private router:Router,
+    private params:ActivatedRoute,
+    private commonService: CommonService){
+      commonService.sideSheet().subscribe(d =>  {
+        this.showSide = d.sideSheet;
+        this.data = d.data;
+        console.log(this.data);
+      });
+    }
 
-  ngOnInit(){
-    // if(top !== self){
-    //   this.router.navigate(['/home'])
-    // }
-    // else{
-    //   this.router.navigate(['/shop', { shop: this.params.snapshot.paramMap.get('shop') }])
-    // }
+
+  ngOnInit(){ }
+
+  closeSheet() {
+    this.commonService.toggleSideSheet(false);
   }
 }

@@ -15,6 +15,7 @@ import { SharedComponent } from './components/shared/shared.component';
 import { LoaderComponent } from './components/shared/loader/loader.component';
 import { ImageLoaderComponent } from './components/shared/image-loader/image-loader.component';
 import { NotificationService } from './services/notification.service';
+import { CommonService } from './services/common.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { NotificationService } from './services/notification.service';
   providers: [
     OrderService,
     NotificationService,
+    CommonService,
     AppConstants
   ],
   bootstrap: [AppComponent]

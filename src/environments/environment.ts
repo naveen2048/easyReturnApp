@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  BASE_URI: 'https://easyreturn.herokuapp.com/',//'http://localhost:8091/',
+  BASE_URI: 'http://localhost:8091/',  //'https://easyreturn.herokuapp.com/',//'http://localhost:8091/',
   production: false
 };
 
