@@ -74,7 +74,7 @@ router.get("/shopify", (req, res) => {
 // Callback once installation is invoked with auth_token and other parameters
 router.get("/shopify/callback", (req, res) => {
     const { shop, hmac, code, state } = req.query;
-    const stateCookie = cookie.parse(req.headers.cookie).state;
+    //const stateCookie = cookie.parse(req.headers.cookie).state;
 
     //validate if response is from Shopify, then proceed
      //if(validateRequest(req, hmac)){
