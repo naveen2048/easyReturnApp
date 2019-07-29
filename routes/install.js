@@ -19,20 +19,7 @@ var db = dbModule.getDb();
 router.get("/shopify", (req, res) => {
     const shop = req.query.shop;
 
-    if(shop != null && shop != ""){
-
-      //Check if app already installed on shop
-      db.shoptokens.find({ shop: shop }, function(err, _shop){
-        if(err){
-            res.send(err);
-        }
-      //shop found
-      if(_shop) {
-        var _parentPath = path.resolve(__dirname , ".." );
-        res.sendFile(_parentPath + "/dist/index.html");
-      }
-      else {
-        const state = nonce();
+    const state = nonce();
         const redirectUri = config.forwardingAddress + "/shopify/callback";
         const installUrl =
         "https:" +
@@ -46,14 +33,42 @@ router.get("/shopify", (req, res) => {
 
         //res.cookie("state",state);
         res.redirect(installUrl);
-      }
-    });
-    }
-    else{
-        res
-        .status(400)
-        .send("Missing shop parameter")
-    }
+
+    // if(shop != null && shop != ""){
+
+    //   //Check if app already installed on shop
+    //   db.shoptokens.find({ shop: shop }, function(err, _shop){
+    //     if(err){
+    //         res.send(err);
+    //     }
+    //   //shop found
+    //   if(_shop) {
+    //     var _parentPath = path.resolve(__dirname , ".." );
+    //     res.sendFile(_parentPath + "/dist/index.html");
+    //   }
+    //   else {
+    //     const state = nonce();
+    //     const redirectUri = config.forwardingAddress + "/shopify/callback";
+    //     const installUrl =
+    //     "https:" +
+    //     shop +
+    //     "/admin/oauth/authorize?client_id=" +
+    //     config.apiKey +
+    //     "&scope=" +
+    //     config.scopes +
+    //     "&redirect_uri=" +
+    //     redirectUri
+
+    //     //res.cookie("state",state);
+    //     res.redirect(installUrl);
+    //   }
+    // });
+    // }
+    // else{
+    //     res
+    //     .status(400)
+    //     .send("Missing shop parameter")
+    // }
 });
 
 // Callback once installation is invoked with auth_token and other parameters
