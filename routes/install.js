@@ -19,7 +19,7 @@ var db = dbModule.getDb();
 router.get("/shopify", (req, res) => {
     const shop = req.query.shop;
 
-    if(shop){
+    if(shop != null && shop != ""){
 
       //Check if app already installed on shop
       db.shoptokens.find({ shop: shop }, function(err, _shop){
